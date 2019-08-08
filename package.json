@@ -11,6 +11,7 @@
     "lodash": "^4.17.15",
     "react": "16.8.6",
     "react-native": "0.60.4",
+    "react-native-navigation": "^2.26.5",
     "react-redux": "^7.1.0",
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
