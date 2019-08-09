@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import shoppingLists from './shoppingLists';
+import shoppingListsReducer from './shoppingLists';
 
 const rootReducer = combineReducers({
-  shoppingLists
+  shoppingLists: shoppingListsReducer
 });
 
 
