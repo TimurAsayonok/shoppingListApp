@@ -7,30 +7,30 @@ import {
 } from '../actions/types';
 import {
   initDefaulList,
-  initDefaultProduct
+  initDefaultProduct,
 } from '../utilites/listHelper';
 import { ListFormState } from '../interfaces/reducers';
 
 const initialState: ListFormState = {
-  list: {}
+  list: {},
 };
 
 export default function (
   state = initialState,
-  action: any
+  action: any,
 ) {
   const { type, payload } = action;
 
   switch (type) {
     case INIT_LIST_FORM: {
-      if(payload) {
+      if (payload) {
         return {
-          list: payload
+          list: payload,
         }
       }
 
       return {
-        list: initDefaulList()
+        list: initDefaulList(),
       };
     }
 
@@ -40,10 +40,9 @@ export default function (
       const newValue = payload.value;
 
       dataList[fieldForChanging] = newValue;
-      
       return {
         list: {
-          ...dataList
+          ...dataList,
         },
       };
     }
@@ -53,10 +52,9 @@ export default function (
       const newProduct = initDefaultProduct();
 
       dataList.products.unshift(newProduct);
-
       return {
         list: {
-          ...dataList
+          ...dataList,
         },
       };
     };
@@ -70,7 +68,7 @@ export default function (
           newProduct[payload.value.field] = payload.value.data;
 
           return {
-            ...newProduct
+            ...newProduct,
           };
         }
 
@@ -80,7 +78,7 @@ export default function (
       return {
         list: {
           ...dataList,
-          products: newProducts
+          products: newProducts,
         },
       };
     };

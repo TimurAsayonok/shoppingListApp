@@ -10,7 +10,9 @@ import {
 } from 'react-native-navigation';
 import { LIST_TYPES } from '../constants/common';
 import { Type } from '../interfaces/modals';
-import SelectListTypeScreenComponent from '../components/shoppingList/SelectListTypeScreen.component';
+import {
+  SelectListTypeScreenComponent,
+} from '../components/shoppingList/SelectListTypeScreen.component';
 
 interface Props extends ComponentEvent {
   onSelect: (item: Type) => any
@@ -39,7 +41,7 @@ class SelectListTypeScreen extends PureComponent<Props, State> {
   /**
    * method which take item (type) and call onSelect from props
    * and pop back to previous screen
-   */ 
+   */
   onSelectItem = (item: Type) => {
     this.props.onSelect(item);
     Navigation.pop(this.props.componentId);

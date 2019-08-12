@@ -1,5 +1,10 @@
 import { StyleSheet } from 'react-native';
-import { HOME_TYPE, WORK_TYPE, HOLIDAY_TYPE, ANOTHER_TYPE} from './common';
+import {
+  HOME_TYPE,
+  WORK_TYPE,
+  HOLIDAY_TYPE,
+  ANOTHER_TYPE,
+} from './common';
 
 export const COLORS = {
   violet: '#9A91CA',

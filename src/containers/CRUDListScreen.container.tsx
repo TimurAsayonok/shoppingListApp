@@ -38,8 +38,7 @@ import {
 } from '../interfaces/modals'
 import { DispatchAction } from '../interfaces/dispatchActions';
 import { AppState } from '../reducers';
-
-interface Props extends ComponentEvent{
+interface Props extends ComponentEvent {
   list: List
   listForUpdating: List
   crudType: string
@@ -56,6 +55,12 @@ interface Props extends ComponentEvent{
 interface State {};
 
 class CRUDListScreenContainer extends PureComponent<Props, State> {
+  // default props
+  static defaultProps: {
+    crudType: string,
+  } = {
+    crudType: CRUD_CREATE_TYPE,
+  }
   navigationEventListener: EventSubscription = Navigation.events().bindComponent(this);
 
   // get options property from navigation
@@ -72,13 +77,6 @@ class CRUDListScreenContainer extends PureComponent<Props, State> {
         },
       },
     };
-  }
-  
-  // default props
-  static defaultProps: {
-    crudType: string
-  } = {
-    crudType: CRUD_CREATE_TYPE
   }
 
   // when component will unmount -> clear list form
@@ -99,7 +97,7 @@ class CRUDListScreenContainer extends PureComponent<Props, State> {
       // call delete list method when clicking on delete icon
       this._onDeleteList();
     }
-    if (buttonId === 'archiveList' ) {
+    if (buttonId === 'archiveList') {
       // call archive list method when clicking on acrhive icon
       this._onArchiveList();
     }
@@ -112,15 +110,16 @@ class CRUDListScreenContainer extends PureComponent<Props, State> {
       listForUpdating,
       componentId,
     } = this.props;
-    let screenTopButtons, initialList;
+    let screenTopButtons;
+    let initialList;
 
     if (crudType === CRUD_READ_TYPE) {
       screenTopButtons = [
         {
           id: 'deleteList',
           text: 'Delete',
-          color: 'black'
-        }
+          color: 'black',
+        },
       ];
       initialList = listForUpdating;
     }
@@ -130,13 +129,13 @@ class CRUDListScreenContainer extends PureComponent<Props, State> {
         {
           id: 'deleteList',
           text: 'Delete',
-          color: 'black'
+          color: 'black',
         },
         {
           id: 'archiveList',
           text: 'Archive',
-          color: 'black'
-        }
+          color: 'black',
+        },
       ];
       initialList = listForUpdating;
     }
@@ -157,14 +156,13 @@ class CRUDListScreenContainer extends PureComponent<Props, State> {
       componentId,
       onChangeFormField,
     } = this.props;
-    
     Navigation.push(componentId, {
       component: {
         name: 'shoppingLists.selectListTypeScreen',
         passProps: {
-          onSelect: (item: Type) => onChangeFormField(field, item.type)
-        }
-      }
+          onSelect: (item: Type) => onChangeFormField(field, item.type),
+        },
+      },
     });
   }
 
@@ -176,19 +174,21 @@ class CRUDListScreenContainer extends PureComponent<Props, State> {
     const {
       componentId,
       list,
-      onChangeArchiveStatusList
+      onChangeArchiveStatusList,
     } = this.props;
 
     ComponentsHelper.onShowActionAlert({
       title: ALERTS_CONSTANTS.archive.title,
       message: ALERTS_CONSTANTS.archive.message,
-      buttons: [{
-        text: 'Yes',
-        onPress: () => {
-          onChangeArchiveStatusList(list.id, !list.archived);
-          Navigation.pop(componentId);
-        }
-      }]
+      buttons: [
+        {
+          text: 'Yes',
+          onPress: () => {
+            onChangeArchiveStatusList(list.id, !list.archived);
+            Navigation.pop(componentId);
+          },
+        },
+      ],
     });
   }
 
@@ -200,19 +200,21 @@ class CRUDListScreenContainer extends PureComponent<Props, State> {
     const {
       componentId,
       list,
-      onDeleteList
+      onDeleteList,
     } = this.props;
 
     ComponentsHelper.onShowActionAlert({
       title: ALERTS_CONSTANTS.delete.title,
       message: ALERTS_CONSTANTS.delete.message,
-      buttons: [{
-        text: 'Yes',
-        onPress: () => {
-          onDeleteList(list.id);
-          Navigation.pop(componentId);
-        }
-      }]
+      buttons: [
+        {
+          text: 'Yes',
+          onPress: () => {
+            onDeleteList(list.id);
+            Navigation.pop(componentId);
+          },
+        },
+      ],
     });
   }
 
@@ -284,7 +286,7 @@ class CRUDListScreenContainer extends PureComponent<Props, State> {
 const mapStateToProps = (state: AppState) => {
   const list = state.listForm.list;
   return {
-    list
+    list,
   };
 };
 
@@ -294,7 +296,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   const onAddProductToList = () => dispatch(addProductToList());
   const onUpdateProductById = (id: string, value: any) => dispatch(updateProductById(id, value));
   const onCreateUpdateShoppingList = (list: List) => dispatch(createUpdateList(list));
-  const onChangeArchiveStatusList = (listId: string, status: boolean) => dispatch(changeArchiveStatusList(listId, status));
+  const onChangeArchiveStatusList = (listId: string, status: boolean) =>
+    dispatch(changeArchiveStatusList(listId, status));
   const onDeleteList = (listId: string) => dispatch(deleteList(listId));
   const onClearListForm = () => dispatch(clearListForm());
 
@@ -306,7 +309,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     onCreateUpdateShoppingList,
     onChangeArchiveStatusList,
     onDeleteList,
-    onClearListForm
+    onClearListForm,
   }
 };
 

@@ -16,7 +16,7 @@ export const initDefaulList = () => {
     type,
     products,
     archived,
-    date_finish: dateFinish
+    date_finish: dateFinish,
   }
 };
 
@@ -29,7 +29,7 @@ export const initDefaultProduct = () => {
   return {
     id,
     title,
-    is_checked: isChecked
+    is_checked: isChecked,
   }
 };
 
@@ -37,4 +37,3 @@ export const initDefaultProduct = () => {
 export const sortShoppingList = (firstList: List, secondList: List) => {
   return sortByDate(firstList.date_finish, secondList.date_finish);
 };
-

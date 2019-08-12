@@ -61,9 +61,9 @@ export const MAP_CRUD_TYPE_TO_SCREEEN_TITLE = {
 };
 
 export const BUTTONS_TITLE = {
-  'create': 'CREATE',
-  'update': 'UPDATE',
-  'restoring': 'RESTORING',
+  create: 'CREATE',
+  update: 'UPDATE',
+  restoring: 'RESTORING',
 };
 
 export const CRUD_CREATE_TYPE = 'create';

@@ -1,7 +1,7 @@
 import { Alert } from 'react-native';
 
-type ButtonType = {
-  text: string,
+interface ButtonType {
+  text: string
   onPress: () => any
 };
 
@@ -13,7 +13,7 @@ interface ShowActionAlertProps {
 
 export class ComponentsHelper {
   static onShowActionAlert = ({
-    title, message, buttons
+    title, message, buttons,
   }: ShowActionAlertProps) => {
     Alert.alert(
       title,
@@ -23,7 +23,7 @@ export class ComponentsHelper {
           text: 'Cancel',
           style: 'cancel',
         },
-        ...buttons
+        ...buttons,
       ],
       { cancelable: true },
     );

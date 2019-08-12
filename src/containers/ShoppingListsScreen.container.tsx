@@ -26,7 +26,6 @@ interface State {};
 
 class ShoppingListsScreen extends PureComponent<Props, State> {
   navigationEventListener: EventSubscription = Navigation.events().bindComponent(this);
-  
   // get options property for navigation
   static get options() {
     return {
@@ -52,7 +51,7 @@ class ShoppingListsScreen extends PureComponent<Props, State> {
   // open a create/read/update/delete list screen
   pushCRUDListScreen = (list: List | null = null): void => {
     const crudType: string = list
-      ? list.archived 
+      ? list.archived
         ? 'read'
         : 'update'
       : 'create';
@@ -62,9 +61,9 @@ class ShoppingListsScreen extends PureComponent<Props, State> {
         name: 'shoppingLists.CRUDListScreen',
         passProps: {
           listForUpdating: list,
-          crudType
-        }
-      }
+          crudType,
+        },
+      },
     });
   }
 
@@ -98,16 +97,17 @@ const mapStateToProps = (state: AppState) => {
     shoppingLists: [
       allLists,
       activeLists,
-      archivedLists
+      archivedLists,
     ],
   };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
-  const onSetActiveSegmentIndex = (index: number) => dispatch(segmentActions.setActiveSegmentIndex(index));
+  const onSetActiveSegmentIndex = (index: number) =>
+    dispatch(segmentActions.setActiveSegmentIndex(index));
 
   return {
-    onSetActiveSegmentIndex
+    onSetActiveSegmentIndex,
   }
 };
 

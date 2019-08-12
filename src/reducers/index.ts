@@ -10,6 +10,5 @@ const rootReducer = combineReducers({
   listForm: listFormReducer,
 });
 
-
 export default rootReducer;
 export type AppState = ReturnType<typeof rootReducer>;
