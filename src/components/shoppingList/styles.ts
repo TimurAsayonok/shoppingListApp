@@ -22,6 +22,9 @@ const ShoppingListsScreenStyles = StyleSheet.create({
 });
 
 const CRUDListScreenComponentStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   componentBody: {
     marginTop: 20,
   },

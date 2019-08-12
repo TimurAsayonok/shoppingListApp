@@ -4,6 +4,7 @@ import {
   DELETE_LIST
 } from '../actions/types';
 import { ShoppingListsState } from '../interfaces/reducers';
+import { sortShoppingList } from '../utilites/listHelper';
 
 
 const initialState: ShoppingListsState = {
@@ -23,7 +24,7 @@ export default function (
       const isListInited = currentLists.findIndex((list) =>
         list.id === payload.id
       );
-      console.log(isListInited)
+
       if (isListInited >= 0) {
         newLists = currentLists.map((list: {}) => {
           if (list.id === payload.id) {
@@ -39,8 +40,11 @@ export default function (
         newLists.push(payload);
       }
 
+      // sort list by date and reverse for getting 'ASCending' data.
+      const sortedList = newLists.sort(sortShoppingList).reverse();
+
       return {
-        lists: newLists,
+        lists: sortedList,
       }
     }
 

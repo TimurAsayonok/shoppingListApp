@@ -16,6 +16,7 @@ import {
   ScreenLargeTitle,
   TextInputWithLabel,
   DatePickerComponent,
+  ErrorMessage,
 } from '../common';
 import {
   LIST_TYPES_STYLES,
@@ -69,7 +70,7 @@ const CRUDListScreenComponent = ({
 
   return (
     <SafeAreaView style={[ScreenStyles.safeAreaView, safeAreaColorStyle]}>
-      <View style={{ flex: 1 }}>
+      <View style={CRUDListScreenComponentStyles.container}>
         <Content
           contentInsetAdjustmentBehavior="automatic"
           contentContainerStyle={ScreenStyles.contentContainerStyle}
@@ -94,21 +95,29 @@ const CRUDListScreenComponent = ({
               onOpenSelectionScreen={onPushSelectDataScreen}
               disable={disableFields}
             />
-            <DatePickerComponent
-              field="date_finish"
-              label="Data of Finish"
-              onSubmit={onSetListData}
-              value={mainData.date_finish}
-              disable={disableFields}
-            />
-            <LisfOfProducts
-              products={mainData.products}
-              onAddNewProduct={onAddProductToList}
-              onUpdateProduct={onUpdateProductById}
-              listTypeColor={listTypeColor}
-              disable={disableFields}
-            />
+            {mainData.date_finish && (
+              <DatePickerComponent
+                field="date_finish"
+                label="Data of Finish"
+                onSubmit={onSetListData}
+                value={mainData.date_finish}
+                disable={disableFields}
+              />
+            )}
+            
+            {disableSubmitButton && (
+              <ErrorMessage
+                message="Please fill in the fields above"
+              />
+            )}
           </View>
+          <LisfOfProducts
+            products={mainData.products}
+            onAddNewProduct={onAddProductToList}
+            onUpdateProduct={onUpdateProductById}
+            listTypeColor={listTypeColor}
+            disable={disableFields}
+          />
         </Content>
         <Button
           onPress={() => onSubmitForm()}

@@ -24,6 +24,12 @@ const ShoppingListCardStyles = StyleSheet.create({
     fontSize: 20,
     color: '#060606',
   },
+  isArchived: {
+    opacity: 0.2,
+  },
+  dateText: {
+    marginBottom: 5
+  }
 });
 
 const CardIconStyles = StyleSheet.create({

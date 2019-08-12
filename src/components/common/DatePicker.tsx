@@ -24,7 +24,8 @@ const DatePickerComponent = ({
   onSubmit,
   value,
   disable
-}: Props) => (
+}: Props) => {
+  return (
     <ListItem
       style={DatePickerStyles.container}
     >
@@ -34,26 +35,28 @@ const DatePickerComponent = ({
       <Right style={DatePickerStyles.right}>
         {disable
           ? (<Text
-              style={[TextStyle.body, DatePickerStyles.text]}
-            >
-              {parseData(value)}
-            </Text>
+            style={[TextStyle.body, DatePickerStyles.text]}
+          >
+            {parseData(value)}
+          </Text>
           )
           : (<DatePicker
-              minimumDate = {new Date()}
-              defaultDate={value || new Date()}
-              locale={"en"}
-              timeZoneOffsetInMinutes={undefined}
-              modalTransparent={false}
-              animationType={"fade"}
-              androidMode={"default"}
-              textStyle={DatePickerStyles.datePickerText}
-              placeHolderTextStyle={[TextStyle.body, DatePickerStyles.placeHolderTextStyle]}
-              onDateChange={(date) => onSubmit(field, date)}
+            minimumDate={new Date()}
+            defaultDate={new Date(value)}
+            locale={"en"}
+            timeZoneOffsetInMinutes={undefined}
+            modalTransparent={false}
+            animationType={"fade"}
+            androidMode={"default"}
+            textStyle={DatePickerStyles.datePickerText}
+            placeHolderText={undefined}
+            placeHolderTextStyle={[TextStyle.body, DatePickerStyles.placeHolderTextStyle]}
+            onDateChange={(date) => onSubmit(field, date)}
           />)
-          }
+        }
       </Right>
     </ListItem>
   );
+}
 
 export default DatePickerComponent;

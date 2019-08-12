@@ -70,10 +70,20 @@ const TextInputWithCheckBoxStyles = StyleSheet.create({
   },
 });
 
+const ErrorMessageStyles = StyleSheet.create({
+  container: {
+    marginTop: 15
+  },
+  text: {
+    color: COLORS.red,
+  },
+});
+
 export {
   ProgressLineStyles,
   ScreenLargeTitleStyles,
   SegmentButtonsStyles,
   DatePickerStyles,
-  TextInputWithCheckBoxStyles
+  TextInputWithCheckBoxStyles,
+  ErrorMessageStyles
 };

@@ -4,6 +4,7 @@ import SegmentButtons from './SegmentButtons';
 import TextInputWithLabel from './TextInputWithLabel';
 import TextInputWithCheckBox from './TextInputWithCheckBox';
 import DatePickerComponent from './DatePicker';
+import ErrorMessage from './ErrorMessage';
 
 export {
   ProgressLine,
@@ -11,5 +12,6 @@ export {
   SegmentButtons,
   TextInputWithLabel,
   DatePickerComponent,
-  TextInputWithCheckBox
+  TextInputWithCheckBox,
+  ErrorMessage
 };

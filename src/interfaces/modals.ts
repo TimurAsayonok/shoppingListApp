@@ -4,7 +4,7 @@ export interface List {
   products: [],
   type: string | null,
   archived: boolean,
-  date_finish: string | object
+  date_finish: string | number
 };
 
 export interface Product {

@@ -19,13 +19,14 @@ import { LIST_TYPES_STYLES } from '../../../constants/UIStyles';
 import { List } from '../../../interfaces/modals';
 import { TextStyle } from '../../../constants/UIStyles';
 import { ShoppingListCardStyles } from './styles';
+import { parseData } from '../../../utilites/common';
 
 interface Props {
   shoppingListItem: List,
   onSelect: (item: List) => any
   numOfcheckedProducts: number
   numOfProducts: number
-  dateFinish: string | object
+  dateFinish: string | number
 };
 
 const ShoppingListCard = ({
@@ -35,10 +36,16 @@ const ShoppingListCard = ({
   numOfProducts,
   dateFinish
 }: Props) => {
-  const { title, type } = shoppingListItem;
+  const { title, type, archived } = shoppingListItem;
+  parseData
+  const formattedDateFinish = parseData(new Date(dateFinish));
+
   return (
     <TouchableOpacity
-      style={ShoppingListCardStyles.container}
+      style={[
+        ShoppingListCardStyles.container,
+        archived && ShoppingListCardStyles.isArchived
+      ]}
       onPress={() => onSelect(shoppingListItem)}
     >
       <CardIcon
@@ -56,8 +63,8 @@ const ShoppingListCard = ({
           >
             {title}
           </Text>
-          <Text style={TextStyle.callout}>
-            {/* {dateOfFinishing} */}
+          <Text style={[TextStyle.callout, ShoppingListCardStyles.dateText]}>
+            until: {formattedDateFinish}
           </Text>
           <Text style={TextStyle.callout}>
             checked: {numOfcheckedProducts} / {numOfProducts}

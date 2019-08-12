@@ -1,7 +1,7 @@
 export const SET_ACTIVE_SEGMENT: string = 'SET_ACTIVE_SEGMENT';
 
 /** List Form Acions */
-export const INIT_LIST_FORML: string = 'INIT_LIST_FORM';
+export const INIT_LIST_FORM: string = 'INIT_LIST_FORM';
 export const CHANGE_FORM_FIELD: string = 'CHANGE_FORM_FIELD';
 export const ADD_PRODUCT_TO_LIST: string = 'ADD_PRODUCT_TO_LIST';
 export const CHANGE_PRODUCT_BY_ID: string = 'CHANGE_PRODUCT_BY_ID';
