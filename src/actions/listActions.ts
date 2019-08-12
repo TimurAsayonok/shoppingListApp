@@ -1,6 +1,6 @@
 import {
   CREATE_UPDATE_LIST,
-  ARCHIVE_LIST,
+  CHANGE_ARCHIVE_STATUS_LIST,
   DELETE_LIST
 } from './types';
 
@@ -9,9 +9,12 @@ export const createUpdateList = (list: {}) => ({
   payload: list
 });
 
-export const archiveList = (listId: string) => ({
-  type: ARCHIVE_LIST,
-  payload: listId
+export const changeArchiveStatusList = (listId: string, status: boolean) => ({
+  type: CHANGE_ARCHIVE_STATUS_LIST,
+  payload: {
+    listId,
+    status
+  }
 });
 
 export const deleteList = (listId: string) => ({

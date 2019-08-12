@@ -3,7 +3,7 @@ import {
   CHANGE_FORM_FIELD,
   ADD_PRODUCT_TO_LIST,
   CHANGE_PRODUCT_BY_ID,
-  CREATE_UPDATE_LIST
+  CLEAR_LIST_FORM
 } from './types';
 
 export const initListForm = (list: object) => ({
@@ -17,6 +17,10 @@ export const сhangeFormField = (field: string, value: string | Date ) => ({
     field,
     value
   },
+});
+
+export const clearListForm = () => ({
+  type: CLEAR_LIST_FORM
 });
 
 export const addProductToList = () => ({

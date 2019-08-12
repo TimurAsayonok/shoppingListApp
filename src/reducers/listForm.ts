@@ -3,7 +3,6 @@ import {
   CHANGE_FORM_FIELD,
   ADD_PRODUCT_TO_LIST,
   CHANGE_PRODUCT_BY_ID,
-  SUBMIT_LIST_FORM,
   CLEAR_LIST_FORM,
 } from '../actions/types';
 import {
@@ -84,6 +83,12 @@ export default function (
         },
       };
     };
+
+    case CLEAR_LIST_FORM: {
+      return {
+        list: {},
+      }
+    }
 
     default:
       return state;

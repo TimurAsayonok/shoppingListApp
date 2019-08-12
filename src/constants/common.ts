@@ -47,9 +47,21 @@ export const SCREENS = {
     subTitle: 'List',
     fullTitle: 'Update List',
   },
+  readListScreen: {
+    title: 'Read',
+    subTitle: 'List',
+    fullTitle: 'Read List',
+  },
+};
+
+export const MAP_CRUD_TYPE_TO_SCREEEN_TITLE = {
+  create: SCREENS.createListScreen,
+  update: SCREENS.updateListScreen,
+  read: SCREENS.readListScreen
 };
 
 export const BUTTONS_TITLE = {
   create: 'CREATE',
-  update: 'UPDATE'
+  update: 'UPDATE',
+  restoring: 'RESTORING'
 };

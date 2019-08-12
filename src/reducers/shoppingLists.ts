@@ -1,6 +1,6 @@
 import {
   CREATE_UPDATE_LIST,
-  ARCHIVE_LIST,
+  CHANGE_ARCHIVE_STATUS_LIST,
   DELETE_LIST
 } from '../actions/types';
 
@@ -43,13 +43,13 @@ export default function (
       }
     }
 
-    case ARCHIVE_LIST: {
+    case CHANGE_ARCHIVE_STATUS_LIST: {
       const currentLists = state.lists;
       const newLists = currentLists.map((list: {}) => {
-        if (list.id === payload) {
+        if (list.id === payload.listId) {
           return {
             ...list,
-            archived: true
+            archived: payload.status
           }
         }
 

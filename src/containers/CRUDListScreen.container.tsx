@@ -12,15 +12,16 @@ import {
   initListForm,
   сhangeFormField,
   addProductToList,
-  updateProductById
+  updateProductById,
+  clearListForm
 } from '../actions/listFormActions';
 import {
   createUpdateList,
-  archiveList,
+  changeArchiveStatusList,
   deleteList
 } from '../actions/listActions';
 import {
-  SCREENS,
+  MAP_CRUD_TYPE_TO_SCREEEN_TITLE,
   BUTTONS_TITLE
 } from '../constants/common';
 
@@ -44,6 +45,10 @@ class CRUDListScreenContainer extends PureComponent {
   
   static defaultProps = {
     crudType: 'create'
+  }
+
+  componentWillUnmount() {
+    this.props.onClearListForm();
   }
 
   componentDidMount() {
@@ -117,10 +122,10 @@ class CRUDListScreenContainer extends PureComponent {
   }
 
   onArchiveList = () => {
-    const { componentId, list, onArchiveList } = this.props;
+    const { componentId, list, onChangeArchiveStatusList } = this.props;
     Alert.alert(
       'Delete List',
-      'Would you like to delete curren Shopping List',
+      'Would you like to archive current Shopping List?',
       [
         {
           text: 'Cancel',
@@ -129,7 +134,7 @@ class CRUDListScreenContainer extends PureComponent {
         {
           text: 'Yes',
           onPress: () => {
-            onArchiveList(list.id);
+            onChangeArchiveStatusList(list.id, !list.archived);
             Navigation.pop(componentId);
           }
         },
@@ -142,7 +147,7 @@ class CRUDListScreenContainer extends PureComponent {
     const { componentId, list, onDeleteList } = this.props;
     Alert.alert(
       'Delete List',
-      'Would you like to delete curren Shopping List',
+      'Would you like to delete current Shopping List?',
       [
         {
           text: 'Cancel',
@@ -160,21 +165,32 @@ class CRUDListScreenContainer extends PureComponent {
     );
   }
 
-  onCreateUpdateShoppingList = (list: {}) => {
-    const { onCreateUpdateShoppingList, componentId } = this.props;
-    
-    onCreateUpdateShoppingList(list);
+  _getButtonTitle = () => {
+    const { list, crudType } = this.props;
+
+    if (list.archived) {
+      return BUTTONS_TITLE['restoring'];
+    }
+
+    return BUTTONS_TITLE[crudType];
+  }
+
+  _onSubmitCRUDForm = () => {
+    const { list, onChangeArchiveStatusList, onCreateUpdateShoppingList, componentId } = this.props;
+
+    if (list.archived) {
+      onChangeArchiveStatusList(list.id, !list.archived);
+    } else {
+      onCreateUpdateShoppingList(list);
+    }
+
     Navigation.pop(componentId);
   }
-  
-
 
   render() {
-    console.log(this.props);
-    const { list, onChangeFormField, crudType, onAddProductToList, onUpdateProductById, onCreateUpdateShoppingList } = this.props;
-    const screenTitle = (crudType === 'update')
-      ? SCREENS.updateListScreen
-      : SCREENS.createListScreen;
+    const { list, onChangeFormField, crudType, onAddProductToList, onUpdateProductById } = this.props;
+    const screenTitle = MAP_CRUD_TYPE_TO_SCREEEN_TITLE[crudType];
+    const buttonTitle = this._getButtonTitle();
 
     return (
       <CRUDListScreenComponent
@@ -184,8 +200,8 @@ class CRUDListScreenContainer extends PureComponent {
         onPushSelectDataScreen={this.onPushSelectDataScreen}
         onAddProductToList={onAddProductToList}
         onUpdateProductById={onUpdateProductById}
-        onCreateUpdateShoppingList={this.onCreateUpdateShoppingList}
-        buttonTitle={BUTTONS_TITLE[crudType]}
+        onSubmitForm={this._onSubmitCRUDForm}
+        buttonTitle={buttonTitle}
         disibleFields={list.archived}
       />
     );
@@ -193,7 +209,6 @@ class CRUDListScreenContainer extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
   const list = state.listForm.list;
   return {
     list
@@ -206,9 +221,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   const onAddProductToList = () => dispatch(addProductToList());
   const onUpdateProductById = (id: string, value: {}): any => dispatch(updateProductById(id, value));
   const onCreateUpdateShoppingList = (list: {}) => dispatch(createUpdateList(list));
-  const onArchiveList = (listId: string) => dispatch(archiveList(listId));
+  const onChangeArchiveStatusList = (listId: string, status: boolean) => dispatch(changeArchiveStatusList(listId, status));
   const onDeleteList = (listId: string) => dispatch(deleteList(listId));
-
+  const onClearListForm = () => dispatch(clearListForm());
 
   return {
     onInitListForm,
@@ -216,8 +231,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     onAddProductToList,
     onUpdateProductById,
     onCreateUpdateShoppingList,
-    onArchiveList,
-    onDeleteList
+    onChangeArchiveStatusList,
+    onDeleteList,
+    onClearListForm
   }
 };
 

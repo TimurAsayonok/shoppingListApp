@@ -33,7 +33,7 @@ const CRUDListScreenComponent = ({
   onPushSelectDataScreen,
   onAddProductToList,
   onUpdateProductById,
-  onCreateUpdateShoppingList,
+  onSubmitForm,
   buttonTitle,
   disibleFields
 }) => {
@@ -91,7 +91,7 @@ const CRUDListScreenComponent = ({
           </View>
         </Content>
         <Button
-          onPress={() => onCreateUpdateShoppingList(mainData)}
+          onPress={() => onSubmitForm()}
           full
           style={buttonColorStyle}
         >
