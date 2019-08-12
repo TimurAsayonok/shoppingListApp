@@ -1,10 +1,21 @@
 import React from 'react';
-import { ListItem, CheckBox, Input } from 'native-base';
-import { TextStyle } from '../../constants/UIStyles';
-import { ScreenLargeTitleStyles } from './styles';
+import {
+  ListItem,
+  CheckBox, Input,
+} from 'native-base';
+import { TextInputWithCheckBoxStyles } from './styles';
+
+interface Props {
+  inputPlaceholder: string
+  onCheckBoxChange: (status: boolean) => void
+  onInputChange: (text: string) => void
+  value: string
+  color: string
+  isChecked: boolean
+  disable: boolean
+};
 
 const TextInputWithCheckBox = ({
-  field,
   inputPlaceholder,
   onCheckBoxChange,
   onInputChange,
@@ -12,8 +23,8 @@ const TextInputWithCheckBox = ({
   color,
   isChecked,
   disable
-}) => (
-    <ListItem style={{ paddingBottom: 0, marginLeft: 0, }}>
+}: Props) => (
+    <ListItem style={TextInputWithCheckBoxStyles.container}>
       <CheckBox
         onPress={() =>
           onCheckBoxChange(!isChecked)

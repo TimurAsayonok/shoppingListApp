@@ -1,18 +1,33 @@
 /**
- * 
- *
+ * ShoppingListsScreen is a main screen for
+ * showing all list with you have
  */
 import React, { PureComponent } from 'react';
-import { SafeAreaView, } from 'react-native';
-import { Navigation } from 'react-native-navigation';
+import {
+  Navigation,
+  EventSubscription,
+  ComponentEvent,
+} from 'react-native-navigation';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { segmentActions } from '../actions';
 import { ShoppingListsScreenComponent } from '../components/shoppingList';
+import { AppState } from '../reducers';
+import { List } from '../interfaces/modals';
+import { DispatchAction } from '../interfaces/dispatchActions';
 
-class ShoppingListsScreen extends PureComponent {
+interface Props extends ComponentEvent {
+  activeSegment: number
+  shoppingLists: List[][]
+  onSetActiveSegmentIndex: (index: number) => DispatchAction
+};
+
+interface State {};
+
+class ShoppingListsScreen extends PureComponent<Props, State> {
   navigationEventListener: EventSubscription = Navigation.events().bindComponent(this);
-
+  
+  // get options property for navigation
   static get options() {
     return {
       topBar: {
@@ -20,22 +35,23 @@ class ShoppingListsScreen extends PureComponent {
           {
             id: 'addList',
             text: 'Add',
-            color: 'black'
-          }
-        ]
-      }
+            color: 'black',
+          },
+        ],
+      },
     };
   }
 
-  navigationButtonPressed({ buttonId }) {
+  // method for handling navigation button touches
+  navigationButtonPressed({ buttonId }: { buttonId: string}) {
     if (buttonId === 'addList') {
-      this.pushGRUDListScreen();
+      this.pushCRUDListScreen();
     }
   }
 
-  pushGRUDListScreen = (list: object | null = null) => {
-    console.log(list)
-    const crudType = list
+  // open a create/read/update/delete list screen
+  pushCRUDListScreen = (list: List | null = null): void => {
+    const crudType: string = list
       ? list.archived 
         ? 'read'
         : 'update'
@@ -66,16 +82,16 @@ class ShoppingListsScreen extends PureComponent {
         activeSegment={activeSegment}
         onSetActiveSegmentIndex={onSetActiveSegmentIndex}
         activeLists={activeLists}
-        onPushGRUDListScreen={this.pushGRUDListScreen}
+        onPushCRUDListScreen={this.pushCRUDListScreen}
       />
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  const allLists = state.shoppingLists.lists;
-  const activeLists = allLists.filter(list => !list.archived);
-  const archivedLists = allLists.filter(list => list.archived);
+const mapStateToProps = (state: AppState) => {
+  const allLists: List[] = state.shoppingLists.lists;
+  const activeLists: List[] = allLists.filter((list: List) => !list.archived);
+  const archivedLists: List[] = allLists.filter((list: List) => list.archived);
 
   return {
     activeSegment: state.segmentButtons.activeSegment,

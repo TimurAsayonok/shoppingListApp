@@ -7,7 +7,7 @@ import listFormReducer from './listForm';
 const rootReducer = combineReducers({
   shoppingLists: shoppingListsReducer,
   segmentButtons: segmentButtonsReducer,
-  listForm: listFormReducer
+  listForm: listFormReducer,
 });
 
 

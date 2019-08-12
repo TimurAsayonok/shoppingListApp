@@ -1,6 +1,6 @@
 /**
- * 
- *
+ * ShoppingListsScreenComponent is main component for
+ * ShoppingListsScreen
  */
 import React from 'react';
 import {
@@ -8,26 +8,36 @@ import {
   View,
   SafeAreaView
 } from 'react-native';
-import ShoppingListCard from './components/ShoppingListCard';
 import {
   ScreenLargeTitle,
   SegmentButtons
 } from '../common';
+import { SCREENS } from '../../constants/common';
 import {
-  SCREENS
-} from '../../constants/common';
+  List,
+  Product,
+} from '../../interfaces/modals';
 import {
   ShoppingListsScreenStyles,
   ScreenStyles
 } from './styles';
+import ShoppingListCard from './components/ShoppingListCard';
+
+interface Props {
+  shoppingLists: List[][]
+  onSetActiveSegmentIndex: (index: number) => any
+  activeSegment: number
+  activeLists: List[]
+  onPushCRUDListScreen: () => any
+};
 
 const ShoppingListsScreenComponent = ({
   shoppingLists,
   onSetActiveSegmentIndex,
   activeSegment,
   activeLists,
-  onPushGRUDListScreen
-}) => (
+  onPushCRUDListScreen
+}: Props) => (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
@@ -51,18 +61,19 @@ const ShoppingListsScreenComponent = ({
           style={ShoppingListsScreenStyles.shoppingCardsContainer}
         >
           {activeLists.length != 0 && (
-            activeLists.map(list => {
-              const numOfProducts = list.products.length;
-              const numOfcheckedProducts = list.products.filter((product: {}) => 
+            activeLists.map((list: List) => {
+              const numOfProducts: number = list.products.length;
+              const numOfcheckedProducts: number = list.products.filter((product: Product) => 
                 product.is_checked).length;
 
               return (
                 <ShoppingListCard
                   key={list.id}
+                  dateFinish={list.date_finish}
                   shoppingListItem={list}
                   numOfProducts={numOfProducts}
                   numOfcheckedProducts={numOfcheckedProducts}
-                  onSelect={onPushGRUDListScreen}
+                  onSelect={onPushCRUDListScreen}
                 />
               )
             })

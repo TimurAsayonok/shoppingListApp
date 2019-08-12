@@ -7,5 +7,5 @@ export {
   ShoppingListCard,
   CardIcon,
   ShoppingListsScreenComponent,
-  CRUDListScreenComponent
+  CRUDListScreenComponent,
 };

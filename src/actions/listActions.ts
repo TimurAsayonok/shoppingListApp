@@ -1,15 +1,21 @@
 import {
   CREATE_UPDATE_LIST,
   CHANGE_ARCHIVE_STATUS_LIST,
-  DELETE_LIST
+  DELETE_LIST,
 } from './types';
+import {
+  PayloadAction
+} from '../interfaces/dispatchActions';
+import {
+  List
+} from '../interfaces/modals';
 
-export const createUpdateList = (list: {}) => ({
+export const createUpdateList = (list: List): PayloadAction => ({
   type: CREATE_UPDATE_LIST,
   payload: list
 });
 
-export const changeArchiveStatusList = (listId: string, status: boolean) => ({
+export const changeArchiveStatusList = (listId: string, status: boolean): PayloadAction => ({
   type: CHANGE_ARCHIVE_STATUS_LIST,
   payload: {
     listId,
@@ -17,7 +23,7 @@ export const changeArchiveStatusList = (listId: string, status: boolean) => ({
   }
 });
 
-export const deleteList = (listId: string) => ({
+export const deleteList = (listId: string): PayloadAction => ({
   type: DELETE_LIST,
   payload: listId
 });

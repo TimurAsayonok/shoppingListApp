@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { View } from 'react-native';
 import {
   Text,
@@ -7,11 +7,21 @@ import {
 } from 'native-base';
 import { SegmentButtonsStyles } from './styles';
 
-const SegmentButtons = ({ buttonsTitle, activeIndex, onSelect }) => {
-  const getButtons = () => {
-    const buttons = [];
+interface Props {
+  buttonsTitle: string[]
+  activeIndex: number
+  onSelect: (index: number) => void
+};
 
-    buttonsTitle.forEach((title, index) => {
+const SegmentButtons = ({
+  buttonsTitle,
+  activeIndex,
+  onSelect
+}: Props) => {
+  const getButtons = () => {
+    const buttons: JSX.Element[] = [];
+
+    buttonsTitle.forEach((title: string, index: number) => {
       const button = (
         <Button
           key={index}

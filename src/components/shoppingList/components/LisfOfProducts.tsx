@@ -1,32 +1,32 @@
 import React from 'react';
-import {
-  View,
-  TouchableOpacity,
-} from 'react-native';
+import { View } from 'react-native';
 import {
   Text,
   Icon,
   Button,
   List,
-  ListItem,
-  CheckBox,
-  Input,
 } from 'native-base';
 import { TextInputWithCheckBox } from '../../common';
-import { TextStyle, LIST_TYPES_STYLES, COLORS } from '../../../constants/UIStyles';
-import { ShoppingListCardStyles } from './styles';
+import { Product } from '../../../interfaces/modals';
+import { TextStyle } from '../../../constants/UIStyles';
+import { LisfOfProductsStyles } from './styles';
+
+interface Props {
+  onAddNewProduct: () => void
+  products: Product[]
+  onUpdateProduct: (id: string, value: any) => void
+  listTypeColor: string
+  disable: boolean
+};
 
 const LisfOfProducts = ({
   onAddNewProduct,
   products,
   onUpdateProduct,
-  listType,
   listTypeColor,
   disable
-}: {}) => (
-    <View style={{
-      marginTop: 25
-    }}>
+}: Props) => (
+    <View style={LisfOfProductsStyles.container}>
       <Text style={TextStyle.title3}>Products:</Text>
       {!disable && (
         <Button

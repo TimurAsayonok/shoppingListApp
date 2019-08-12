@@ -3,9 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "react-native start",
+    "dev": "react-native start",
+    "start:ios": "react-native run-ios",
+    "start:android": "react-native run-android",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "./node_modules/.bin/tslint ./src/**/*.ts{,x}"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.1",

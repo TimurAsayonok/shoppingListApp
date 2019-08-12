@@ -1,6 +1,4 @@
-import {
-  StyleSheet,
-} from 'react-native';
+import { StyleSheet } from 'react-native';
 import { COLORS } from '../../constants/UIStyles';
 
 const ProgressLineStyles = StyleSheet.create({
@@ -18,7 +16,7 @@ const ProgressLineStyles = StyleSheet.create({
 const ScreenLargeTitleStyles = StyleSheet.create({
   container: {
     flexDirection: 'column',
-  }
+  },
 });
 
 const SegmentButtonsStyles = StyleSheet.create({
@@ -37,24 +35,45 @@ const SegmentButtonsStyles = StyleSheet.create({
     borderColor: 'transparent',
   },
   buttonTitle: {
-    color: COLORS.black
-  }
+    color: COLORS.black,
+  },
 });
 
-const DatePickerStyles = {
+const DatePickerStyles = StyleSheet.create({
   container: {
     marginLeft: 0,
     marginTop: 15,
     paddingBottom: 0,
     paddingTop: 0,
     paddingLeft: 2,
-    paddingRight: 0
+    paddingRight: 0,
   },
-}
+  right: {
+    flex: 1,
+  },
+  text: {
+    color: COLORS.darkOrange,
+    padding: 10,
+  },
+  datePickerText: {
+    color: COLORS.darkOrange,
+  },
+  placeHolderTextStyle: { 
+    color: COLORS.darkGrey,
+  },
+});
+
+const TextInputWithCheckBoxStyles = StyleSheet.create({
+  container: {
+    paddingBottom: 0,
+    marginLeft: 0, 
+  },
+});
 
 export {
   ProgressLineStyles,
   ScreenLargeTitleStyles,
   SegmentButtonsStyles,
-  DatePickerStyles
+  DatePickerStyles,
+  TextInputWithCheckBoxStyles
 };

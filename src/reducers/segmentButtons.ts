@@ -1,13 +1,14 @@
 
-import { SET_ACTIVE_SEGMENT } from '../actions/types'; 
+import { SET_ACTIVE_SEGMENT } from '../actions/types';
+import { SegmentButtonsState } from '../interfaces/reducers';
 
-const initialState = {
+const initialState: SegmentButtonsState = {
   activeSegment: 0
 };
 
 export default function (
   state = initialState,
-  action
+  action: any
 ) {
   const { type, payload } = action;
 

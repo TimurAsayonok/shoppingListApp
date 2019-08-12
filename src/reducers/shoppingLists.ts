@@ -3,15 +3,16 @@ import {
   CHANGE_ARCHIVE_STATUS_LIST,
   DELETE_LIST
 } from '../actions/types';
+import { ShoppingListsState } from '../interfaces/reducers';
 
 
-const initialState = {
+const initialState: ShoppingListsState = {
   lists: [],
 };
 
 export default function (
   state = initialState,
-  action
+  action: any
 ) {
   const { type, payload } = action;
 

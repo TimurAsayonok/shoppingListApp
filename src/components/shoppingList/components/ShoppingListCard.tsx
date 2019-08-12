@@ -1,3 +1,9 @@
+/**
+ * ShoppingListCard is component for
+ * showing list informatin as a card.
+ * This component will show Icon, Title, date of finishing
+ * ans munber of products
+ */
 import React from 'react';
 import {
   View,
@@ -10,10 +16,25 @@ import {
 import CardIcon from './CardIcon';
 import { ProgressLine } from '../../common';
 import { LIST_TYPES_STYLES } from '../../../constants/UIStyles';
+import { List } from '../../../interfaces/modals';
 import { TextStyle } from '../../../constants/UIStyles';
 import { ShoppingListCardStyles } from './styles';
 
-const ShoppingListCard = ({ shoppingListItem, onSelect, numOfcheckedProducts, numOfProducts }: {}) => {
+interface Props {
+  shoppingListItem: List,
+  onSelect: (item: List) => any
+  numOfcheckedProducts: number
+  numOfProducts: number
+  dateFinish: string | object
+};
+
+const ShoppingListCard = ({
+  shoppingListItem,
+  onSelect,
+  numOfcheckedProducts,
+  numOfProducts,
+  dateFinish
+}: Props) => {
   const { title, type } = shoppingListItem;
   return (
     <TouchableOpacity
@@ -34,6 +55,12 @@ const ShoppingListCard = ({ shoppingListItem, onSelect, numOfcheckedProducts, nu
             style={TextStyle.title3}
           >
             {title}
+          </Text>
+          <Text style={TextStyle.callout}>
+            {/* {dateOfFinishing} */}
+          </Text>
+          <Text style={TextStyle.callout}>
+            checked: {numOfcheckedProducts} / {numOfProducts}
           </Text>
           <ProgressLine
             containerStyles={{

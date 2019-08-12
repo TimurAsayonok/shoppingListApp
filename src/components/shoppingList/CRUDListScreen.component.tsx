@@ -8,23 +8,42 @@ import {
   View,
 } from 'react-native';
 import {
-  Content, Text, Button,
+  Content,
+  Text,
+  Button,
 } from 'native-base';
 import {
   ScreenLargeTitle,
   TextInputWithLabel,
-  DatePickerComponent
+  DatePickerComponent,
 } from '../common';
 import {
   LIST_TYPES_STYLES,
-  COLORS
+  COLORS,
 } from '../../constants/UIStyles';
-import SelectListType from './components/SelectListType'
-import LisfOfProducts from './components/LisfOfProducts';
+import { List } from '../../interfaces/modals'
 import {
-  GRUDListScreenStyles,
+  CRUDListScreenComponentStyles,
   ScreenStyles,
 } from './styles';
+import SelectListType from './components/SelectListType'
+import LisfOfProducts from './components/LisfOfProducts';
+
+interface Props {
+  mainData: List
+  screenTitle: {
+    title: string,
+    subTitle: string
+  }
+  onSetListData: (field: string, value: any) => void
+  onPushSelectDataScreen: (field: string) => void
+  onAddProductToList: () => void
+  onUpdateProductById: (id: string, value: any) => void
+  onSubmitForm: () => void
+  buttonTitle: string
+  disableFields: boolean
+  disableSubmitButton: boolean
+};
 
 const CRUDListScreenComponent = ({
   onSetListData,
@@ -35,8 +54,9 @@ const CRUDListScreenComponent = ({
   onUpdateProductById,
   onSubmitForm,
   buttonTitle,
-  disibleFields
-}) => {
+  disableFields,
+  disableSubmitButton
+}: Props) => {
   const listTypeColor = mainData.type
     ? LIST_TYPES_STYLES[mainData.type].iconBackgroundColor
     : COLORS.darkGrey;
@@ -59,41 +79,42 @@ const CRUDListScreenComponent = ({
             title={screenTitle.title}
             subTitle={screenTitle.subTitle}
           />
-          <View style={{ marginTop: 20 }}>
+          <View style={CRUDListScreenComponentStyles.componentBody}>
             <TextInputWithLabel
               field="title"
               label="Name"
               onCangeText={onSetListData}
               value={mainData.title}
-              disable={disibleFields}
+              disable={disableFields}
             />
             <SelectListType
               label="Type"
               field="type"
               value={mainData.type}
               onOpenSelectionScreen={onPushSelectDataScreen}
-              disable={disibleFields}
+              disable={disableFields}
             />
             <DatePickerComponent
               field="date_finish"
               label="Data of Finish"
               onSubmit={onSetListData}
               value={mainData.date_finish}
-              disable={disibleFields}
+              disable={disableFields}
             />
             <LisfOfProducts
               products={mainData.products}
               onAddNewProduct={onAddProductToList}
               onUpdateProduct={onUpdateProductById}
               listTypeColor={listTypeColor}
-              disable={disibleFields}
+              disable={disableFields}
             />
           </View>
         </Content>
         <Button
           onPress={() => onSubmitForm()}
-          full
           style={buttonColorStyle}
+          disabled={disableSubmitButton}
+          full
         >
           <Text>{buttonTitle}</Text>
         </Button>

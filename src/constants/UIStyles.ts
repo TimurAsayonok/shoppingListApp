@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { HOME_TYPE, WORK_TYPE, HOLIDAY_TYPE, ANOTHER_TYPE} from './common';
 
 export const COLORS = {
   violet: '#9A91CA',
@@ -22,32 +23,32 @@ export const TextStyle = StyleSheet.create({
   largeTitle: {
     fontSize: 34,
     color: COLORS.black,
-    fontWeight: '500'
+    fontWeight: '500',
   },
   title1: {
     fontSize: 28,
-    color: COLORS.black
+    color: COLORS.black,
   },
   title2: {
     fontSize: 22,
-    color: COLORS.black
+    color: COLORS.black,
   },
   title3: {
     fontSize: 20,
-    color: COLORS.black
+    color: COLORS.black,
   },
   body: {
     fontSize: 17,
-    color: COLORS.black
+    color: COLORS.black,
   },
   headLine: {
     fontSize: 17,
     fontWeight: '600',
-    color: COLORS.black
+    color: COLORS.black,
   },
   callout: {
     fontSize: 16,
-    color: COLORS.darkGrey
+    color: COLORS.darkGrey,
   },
 });
 

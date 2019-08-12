@@ -1,26 +1,24 @@
 import React from 'react';
-import {
-  View,
-  TouchableOpacity,
-} from 'react-native';
+import { View } from 'react-native';
 import { Text } from 'native-base';
 import { TextStyle, LIST_TYPES_STYLES } from '../../../constants/UIStyles';
+import { Type } from '../../../interfaces/modals';
+import { ListTypeInfoStyles } from './styles';
 import CardIcon from './CardIcon';
-import { ShoppingListCardStyles } from './styles';
 
-const ListTypeInfo = ({ typeItem }: {}) => {
+interface Props {
+  typeItem: Type
+};
+
+const ListTypeInfo = ({ typeItem }: Props) => {
   return (
-    <View style={{
-      flex: 1,
-      flexDirection: 'row',
-      alignItems: 'center'
-    }}>
+    <View style={ListTypeInfoStyles.container}>
       <CardIcon
         backgroundColor={LIST_TYPES_STYLES[typeItem.type].iconBackgroundColor}
         borderColor={LIST_TYPES_STYLES[typeItem.type].iconBorderColor}
         isSmall
       />
-      <Text style={[TextStyle.body, { marginLeft: 10 }]}>
+      <Text style={[TextStyle.body, ListTypeInfoStyles.text]}>
         {typeItem.title}
       </Text>
     </View>

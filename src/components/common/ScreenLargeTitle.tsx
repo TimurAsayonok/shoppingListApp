@@ -4,21 +4,28 @@ import { Text } from 'native-base';
 import { TextStyle } from '../../constants/UIStyles';
 import { ScreenLargeTitleStyles } from './styles';
 
-const ScreenLargeTitle = ({ title, subTitle }) => (
-  <View
-    style={ScreenLargeTitleStyles.container}
-  >
-    <Text
-      style={TextStyle.largeTitle}
+interface Props {
+  title?: string,
+  subTitle?: string
+};
+
+const ScreenLargeTitle = ({
+  title, subTitle
+}: Props) => (
+    <View
+      style={ScreenLargeTitleStyles.container}
     >
-      {title}
-    </Text>
-    <Text
-      style={TextStyle.title1}
-    >
-      {subTitle}
-    </Text>
-  </View>
-);
+      <Text
+        style={TextStyle.largeTitle}
+      >
+        {title}
+      </Text>
+      <Text
+        style={TextStyle.title1}
+      >
+        {subTitle}
+      </Text>
+    </View>
+  );
 
 export default ScreenLargeTitle;

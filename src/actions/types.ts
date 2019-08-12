@@ -1,13 +1,13 @@
-export const SET_ACTIVE_SEGMENT = 'SET_ACTIVE_SEGMENT';
+export const SET_ACTIVE_SEGMENT: string = 'SET_ACTIVE_SEGMENT';
 
 /** List Form Acions */
-export const INIT_LIST_FORM = 'INIT_LIST_FORM';
-export const CHANGE_FORM_FIELD = 'CHANGE_FORM_FIELD';
-export const ADD_PRODUCT_TO_LIST = 'ADD_PRODUCT_TO_LIST';
-export const CHANGE_PRODUCT_BY_ID = 'CHANGE_PRODUCT_BY_ID';
-export const CLEAR_LIST_FORM = 'CLEAR_LIST_FORM';
+export const INIT_LIST_FORML: string = 'INIT_LIST_FORM';
+export const CHANGE_FORM_FIELD: string = 'CHANGE_FORM_FIELD';
+export const ADD_PRODUCT_TO_LIST: string = 'ADD_PRODUCT_TO_LIST';
+export const CHANGE_PRODUCT_BY_ID: string = 'CHANGE_PRODUCT_BY_ID';
+export const CLEAR_LIST_FORM: string = 'CLEAR_LIST_FORM';
 
 /** List Actions */
-export const CHANGE_ARCHIVE_STATUS_LIST = 'CHANGE_ARCHIVE_STATUS_LIST';
-export const DELETE_LIST = 'DELETE_LIST';
-export const CREATE_UPDATE_LIST = 'CREATE_UPDATE_LIST';
+export const CHANGE_ARCHIVE_STATUS_LIST: string = 'CHANGE_ARCHIVE_STATUS_LIST';
+export const DELETE_LIST: string = 'DELETE_LIST';
+export const CREATE_UPDATE_LIST: string = 'CREATE_UPDATE_LIST';

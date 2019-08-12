@@ -1,7 +1,14 @@
 import React from 'react';
 import { Item, Label, Input  } from 'native-base';
 import { TextStyle } from '../../constants/UIStyles';
-import { ScreenLargeTitleStyles } from './styles';
+
+interface Props {
+  label: string
+  field: string
+  value?: string
+  onCangeText: (field: string, text: string) => void
+  disable: boolean
+};
 
 const TextInputWithLabel = ({
   label,
@@ -9,12 +16,12 @@ const TextInputWithLabel = ({
   value,
   onCangeText,
   disable
-}) => (
+}: Props) => (
     <Item inlineLabel>
       <Label style={TextStyle.headLine}>{label}:</Label>
       <Input
         onChange={({ nativeEvent: { text }}) => (
-          onCangeText(field,text)
+          onCangeText(field, text)
         )}
         value={value}
         placeholder={"Type text"}

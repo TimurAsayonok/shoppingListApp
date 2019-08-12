@@ -1,6 +1,4 @@
-import {
-  StyleSheet,
-} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 const ScreenStyles = StyleSheet.create({
   safeAreaView: {
@@ -19,15 +17,25 @@ const ShoppingListsScreenStyles = StyleSheet.create({
   shoppingCardsContainer: {
     marginTop: 20,
     flex: 1,
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
 });
 
-const GRUDListScreenStyles = StyleSheet.create({
+const CRUDListScreenComponentStyles = StyleSheet.create({
+  componentBody: {
+    marginTop: 20,
+  },
+});
+
+const SelectListTypeScreenComponentStyles = StyleSheet.create({
+  listItemContainer: {
+    marginLeft: 0,
+  }
 });
 
 export {
   ScreenStyles,
   ShoppingListsScreenStyles,
-  GRUDListScreenStyles
+  CRUDListScreenComponentStyles,
+  SelectListTypeScreenComponentStyles
 };

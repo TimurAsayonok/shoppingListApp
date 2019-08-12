@@ -1,6 +1,6 @@
 /**
- * 
- *
+ * SelectListTypeScreenComponent is a component on wich you can
+ * select type for list 
  */
 import React from 'react';
 import {
@@ -8,25 +8,27 @@ import {
   SafeAreaView,
 } from 'react-native';
 import {
-  List, ListItem, Text,
+  List,
+  ListItem,
 } from 'native-base'
+import { Type } from '../../interfaces/modals';
+import { ScreenLargeTitle } from '../common';
 import {
-  ScreenLargeTitle,
-} from '../common';
-import ListTypeInfo from './components/ListTypeInfo';
-import {
-  SCREENS,
-} from '../../constants/common';
-import {
-  SelectListTypeScreenComponentStyles,
   ScreenStyles,
+  SelectListTypeScreenComponentStyles
 } from './styles';
+import ListTypeInfo from './components/ListTypeInfo';
+
+interface Props {
+  listForSelection: Type[],
+  onSelect: (item: Type) => any
+};
 
 const SelectListTypeScreenComponent = ({
-  selectedList,
+  listForSelection,
   onSelect
-}) => (
-    <SafeAreaView style={{ flex: 1 }}>
+}: Props) => (
+    <SafeAreaView style={ScreenStyles.safeAreaView}>
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         contentContainerStyle={ScreenStyles.contentContainerStyle}
@@ -36,13 +38,11 @@ const SelectListTypeScreenComponent = ({
           title={"Select"}
         />
         <List>
-          {selectedList && selectedList.map((item, index) => (
+          {listForSelection && listForSelection.map((item: Type, index: number) => (
             <ListItem
               key={index}
               onPress={() => onSelect(item)}
-              style={{
-                marginLeft: 0
-              }}
+              style={SelectListTypeScreenComponentStyles.listItemContainer}
             >
               <ListTypeInfo
                 typeItem={item}

@@ -2,7 +2,20 @@ import React from 'react';
 import { View } from 'react-native';
 import { ProgressLineStyles } from './styles';
 
-const ProgressLine = ({ containerStyles, progressStyles, progress }: {}) => {
+interface Props {
+  containerStyles: {
+    backgroundColor?: string
+    borderColor?: string
+  }
+  progressStyles: {
+    backgroundColor?: string
+  }
+  progress?: number
+};
+
+const ProgressLine = ({
+  containerStyles, progressStyles, progress
+}: Props) => {
   const customContainerStyles = {
     backgroundColor: containerStyles.backgroundColor || 'white',
     borderColor: containerStyles.borderColor || 'white',

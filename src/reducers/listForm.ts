@@ -9,14 +9,15 @@ import {
   initDefaulList,
   initDefaultProduct
 } from '../utilites/listHelper';
+import { ListFormState } from '../interfaces/reducers';
 
-const initialState = {
+const initialState: ListFormState = {
   list: {}
 };
 
 export default function (
   state = initialState,
-  action
+  action: any
 ) {
   const { type, payload } = action;
 
