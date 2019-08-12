@@ -5,6 +5,10 @@ import getStore from './store/configureStore';
 const store = getStore();
 
 export function registerScreens() {
-  Navigation.registerComponentWithRedux('shippingLists.ShippingListsScreen', () => require('./containers/ShippingListsScreen.container').default, Provider, store);
-  // Navigation.registerComponent('shippingLists.ArhivedLists', () => require('./Root').default);
+  Navigation.registerComponentWithRedux('shoppingLists.ShoppingListsScreen', () =>
+    require('./containers/ShoppingListsScreen.container').default, Provider, store);
+  Navigation.registerComponentWithRedux('shoppingLists.CRUDListScreen', () =>
+    require('./containers/CRUDListScreen.container').default, Provider, store);
+  Navigation.registerComponent('shoppingLists.selectListTypeScreen', () =>
+    require('./containers/SelectListTypeScreen.container').default);
 };

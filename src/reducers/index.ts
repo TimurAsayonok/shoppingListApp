@@ -1,9 +1,13 @@
 import { combineReducers } from 'redux';
 
 import shoppingListsReducer from './shoppingLists';
+import segmentButtonsReducer from './segmentButtons';
+import listFormReducer from './listForm';
 
 const rootReducer = combineReducers({
-  shoppingLists: shoppingListsReducer
+  shoppingLists: shoppingListsReducer,
+  segmentButtons: segmentButtonsReducer,
+  listForm: listFormReducer
 });
 
 

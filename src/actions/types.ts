@@ -1,0 +1,13 @@
+export const SET_ACTIVE_SEGMENT = 'SET_ACTIVE_SEGMENT';
+
+/** List Form Acions */
+export const INIT_LIST_FORM = 'INIT_LIST_FORM';
+export const CHANGE_FORM_FIELD = 'CHANGE_FORM_FIELD';
+export const ADD_PRODUCT_TO_LIST = 'ADD_PRODUCT_TO_LIST';
+export const CHANGE_PRODUCT_BY_ID = 'CHANGE_PRODUCT_BY_ID';
+export const CLEAR_LIST_FORM = 'CLEAR_LIST_FORM';
+
+/** List Actions */
+export const ARCHIVE_LIST = 'ARCHIVE_LIST';
+export const DELETE_LIST = 'DELETE_LIST';
+export const CREATE_UPDATE_LIST = 'CREATE_UPDATE_LIST';

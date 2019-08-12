@@ -1,50 +1,12 @@
 import {
-  orderBy,
-  uniqBy,
-} from 'lodash';
-import {
-  HOME_TYPE,
-  WORK_TYPE,
-  HOLIDAY_TYPE,
-  ANOTHER_TYPE
-} from '../constants/common';
+  CREATE_UPDATE_LIST,
+  ARCHIVE_LIST,
+  DELETE_LIST
+} from '../actions/types';
 
 
 const initialState = {
-  lists: [
-    {
-      id: 1,
-      title: 'List for home',
-      type: HOME_TYPE,
-      products: [],
-      archived: false,
-      data: new Date()
-    },
-    {
-      id: 2,
-      title: 'List for Work',
-      type: WORK_TYPE,
-      products: [],
-      archived: false,
-      data: new Date()
-    },
-    {
-      id: 3,
-      title: 'My Birthday',
-      type: HOLIDAY_TYPE,
-      products: [],
-      archived: false,
-      data: new Date()
-    },
-    {
-      id: 4,
-      title: 'For something else',
-      type: ANOTHER_TYPE,
-      products: [],
-      archived: false,
-      data: new Date()
-    }
-  ],
+  lists: [],
 };
 
 export default function (
@@ -54,9 +16,57 @@ export default function (
   const { type, payload } = action;
 
   switch (type) {
-    case "LISTS": {
+    case CREATE_UPDATE_LIST: {
+      let newLists = [];
+      const currentLists = state.lists;
+      const isListInited = currentLists.findIndex((list) =>
+        list.id === payload.id
+      );
+      console.log(isListInited)
+      if (isListInited >= 0) {
+        newLists = currentLists.map((list: {}) => {
+          if (list.id === payload.id) {
+            return {
+              ...payload
+            }
+          }
+
+          return list;
+        })
+      } else {
+        newLists = currentLists;
+        newLists.push(payload);
+      }
+
       return {
-        ...state
+        lists: newLists,
+      }
+    }
+
+    case ARCHIVE_LIST: {
+      const currentLists = state.lists;
+      const newLists = currentLists.map((list: {}) => {
+        if (list.id === payload) {
+          return {
+            ...list,
+            archived: true
+          }
+        }
+
+        return list
+      });
+
+      return {
+        lists: newLists,
+      }
+    }
+
+    case DELETE_LIST: {
+      const currentLists = state.lists;
+      const newLists = currentLists.filter((list: {}) => list.id !== payload);
+
+      return {
+        lists: newLists
       }
     }
 

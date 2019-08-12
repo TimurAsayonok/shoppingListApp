@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import { View } from 'react-native';
 import { ProgressLineStyles } from './styles';
 
 const ProgressLine = ({ containerStyles, progressStyles, progress }: {}) => {

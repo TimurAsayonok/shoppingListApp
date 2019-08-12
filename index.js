@@ -13,7 +13,7 @@ Navigation.events().registerAppLaunchedListener(() => {
         children: [
           {
             component: {
-              name: 'shippingLists.ShippingListsScreen',
+              name: 'shoppingLists.ShoppingListsScreen',
               options: {
                 topBar: {
                   noBorder: true,
